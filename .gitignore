@@ -1,0 +1,18 @@
+# Generated / local files
+.gradle/
+**/.gradle/
+back/build/
+front/node_modules/
+front/dist/
+front/coverage/
+.angular/
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+*.log
+back/bin/
