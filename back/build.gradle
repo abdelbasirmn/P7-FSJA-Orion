@@ -39,3 +39,13 @@ jacocoTestReport {
         html.required = true
     }
 }
+
+tasks.register('copyRuntimeClasspath', Copy) {
+    from configurations.runtimeClasspath
+    into layout.buildDirectory.dir('sonar/runtime-libs')
+}
+
+tasks.register('copyTestRuntimeClasspath', Copy) {
+    from configurations.testRuntimeClasspath
+    into layout.buildDirectory.dir('sonar/test-libs')
+}

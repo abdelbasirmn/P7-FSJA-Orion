@@ -28,7 +28,7 @@ jobs:
         working-directory: back
         run: |
           chmod +x gradlew
-          ./gradlew clean build jacocoTestReport --no-daemon
+          ./gradlew clean build jacocoTestReport copyRuntimeClasspath copyTestRuntimeClasspath --no-daemon
 
       - uses: actions/setup-node@v7
         with:
