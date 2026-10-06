@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+  packages: write
 
 jobs:
   build-test:
@@ -55,3 +56,39 @@ jobs:
           args: >
             -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
+
+  publish-images:
+    name: Publish Docker images
+    needs: build-test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./back
+          file: ./back/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/p7-fsja-orion-back:latest
+            ghcr.io/${{ github.repository_owner }}/p7-fsja-orion-back:${{ github.sha }}
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./front/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/p7-fsja-orion-front:latest
+            ghcr.io/${{ github.repository_owner }}/p7-fsja-orion-front:${{ github.sha }}
