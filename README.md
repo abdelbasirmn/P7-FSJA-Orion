@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
   <img src="./front/src/favicon.png" width="192px" alt="MicroCRM" />
 </p>
 
@@ -247,6 +247,7 @@ Les procédures détaillées sont disponibles dans [`docs/SAUVEGARDE-MAINTENANCE
 
 | Document | Contenu |
 |---|---|
+| [`docs/DOCUMENTATION-TECHNIQUE.md`](./docs/DOCUMENTATION-TECHNIQUE.md) | Documentation technique complète structurée selon le template OpenClassrooms |
 | [`docs/CI-CD.md`](./docs/CI-CD.md) | Architecture, conteneurisation, pipeline CI/CD et procédures d'exécution |
 | [`docs/MONITORING.md`](./docs/MONITORING.md) | Elasticsearch, Logstash, Kibana et centralisation des logs |
 | [`docs/DORA-KPI.md`](./docs/DORA-KPI.md) | KPI observés et positionnement par rapport aux métriques DORA |
